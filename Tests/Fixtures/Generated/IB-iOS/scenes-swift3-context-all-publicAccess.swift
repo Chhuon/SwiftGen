@@ -46,14 +46,6 @@ public struct InitialSceneType<T: UIViewController> {
   }
 }
 
-public protocol SegueType: RawRepresentable { }
-
-public extension UIViewController {
-  func perform<S: SegueType>(segue: S, sender: Any? = nil) where S.RawValue == String {
-    performSegue(withIdentifier: segue.rawValue, sender: sender)
-  }
-}
-
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 public enum StoryboardScene {
   public enum AdditionalImport: StoryboardType {
@@ -124,21 +116,6 @@ public enum StoryboardScene {
     public static let preferences = SceneType<UIKit.UITableViewController>(storyboard: Wizard.self, identifier: "Preferences")
 
     public static let validatePassword = SceneType<UIKit.UIViewController>(storyboard: Wizard.self, identifier: "Validate_Password")
-  }
-}
-
-public enum StoryboardSegue {
-  public enum AdditionalImport: String, SegueType {
-    case `private`
-  }
-  public enum Message: String, SegueType {
-    case customBack = "CustomBack"
-    case embed = "Embed"
-    case nonCustom = "NonCustom"
-    case showNavCtrl = "Show-NavCtrl"
-  }
-  public enum Wizard: String, SegueType {
-    case showPassword = "ShowPassword"
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
